@@ -1,3 +1,7 @@
 ft_gkrellm
 a.out
 *.o
+.vscode
+*.dSYM
+main
+
