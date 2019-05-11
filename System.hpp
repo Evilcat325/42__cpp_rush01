@@ -2,9 +2,12 @@
 #define SYSTEM_HPP
 
 #include <string>
+#include <mach/mach.h>
+#include <mach/vm_page_size.h>
 
-class System {
-  private:
+class System
+{
+private:
 	std::string _hostname;
 	std::string _username;
 	std::string _date_time;
@@ -13,6 +16,8 @@ class System {
 	std::string _cpu_usage;
 	std::string _ram_total;
 	std::string _ram_used;
+	std::string _ram_wired;
+	std::string _ram_free;
 	std::string _net_down;
 	std::string _net_up;
 
@@ -27,7 +32,8 @@ class System {
 	void update_ram_used(void);
 	void update_net_down(void);
 	void update_net_up(void);
-  public:
+
+public:
 	System(/* args */);
 	~System();
 
