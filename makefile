@@ -1,2 +1,6 @@
 CXXFLAGS=-Wall -Wextra -std=c++11
-ft_gkrellm: System.o
+LDFLAGS=-lncurses
+ft_gkrellm: System.o Curses.o
+
+clean:
+	rm *.o ft_gkrellm
