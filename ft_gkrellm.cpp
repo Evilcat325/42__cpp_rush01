@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <unistd.h>
+#include <chrono>
+#include <thread>
 
 void print_stats(void)
 {
@@ -36,10 +38,15 @@ int main(int argc, char *argv[])
 	if (gui)
 	{
 		HostStat hs;
-		hs.snapCPULoad();
-		hs.snapCPUUsage();
-		hs.snapVM();
-		hs.print();
+		while (1)
+		{
+
+			hs.snapCPULoad();
+			hs.snapCPUUsage();
+			hs.snapVM();
+			hs.print();
+			std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+		}
 	}
 	else if (curs)
 	{
