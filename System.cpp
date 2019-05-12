@@ -6,6 +6,7 @@
 #include <sstream>
 #include <iomanip>
 #include <sys/sysctl.h>
+#include <curl/curl.h>
 
 /*
 ** constructors
@@ -140,12 +141,34 @@ void System::update_ram(void)
 
 void System::update_net_down(void)
 {
-	_net_down = "-1";
+	std::stringstream ss;
+	CURL *curl = curl_easy_init();
+	if(curl) {
+		curl_easy_setopt(curl, CURLOPT_URL, "http://google.com");
+		curl_easy_setopt(curl, CURLOPT_NOBODY, 1);
+		auto res = curl_easy_perform(curl);
+		double speed;
+		res = curl_easy_getinfo(curl, CURLINFO_SPEED_DOWNLOAD, &speed);
+		ss << speed;
+	} else
+		ss << "-1";
+	_net_down = ss.str();
 }
 
 void System::update_net_up(void)
 {
-	_net_up = "-1";
+	std::stringstream ss;
+	CURL *curl = curl_easy_init();
+	if(curl) {
+		curl_easy_setopt(curl, CURLOPT_URL, "http://google.com");
+		curl_easy_setopt(curl, CURLOPT_NOBODY, 1);
+		auto res = curl_easy_perform(curl);
+		double speed;
+		res = curl_easy_getinfo(curl, CURLINFO_SPEED_UPLOAD, &speed);
+		ss << speed;
+	} else
+		ss << "-1";
+	_net_down = ss.str();
 }
 
 /*

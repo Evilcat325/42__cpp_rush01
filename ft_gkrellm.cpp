@@ -1,8 +1,16 @@
 #include "System.hpp"
 #include "Curses.hpp"
+#include "cpptk-1.0.2/cpptk.h"
 
 #include <iostream>
 #include <unistd.h>
+
+void guitest(void) {
+	Tk::init("hello");
+	Tk::button(".b") -Tk::text("Say Hello") -Tk::command(hello);
+	Tk::pack(".b") -Tk::padx(20) -Tk::pady(7);
+	Tk::runEventLoop();
+}
 
 void print_stats(void)
 {
@@ -34,7 +42,7 @@ int main(int argc, char *argv[])
 	}
 	if (gui)
 	{
-		std::cout << "not ready tm" << std::endl;
+		guitest();
 	}
 	else if (curs)
 	{
