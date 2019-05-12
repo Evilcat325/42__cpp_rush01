@@ -5,11 +5,11 @@
 #include <iostream>
 #include <unistd.h>
 
-void guitest(void) {
-	Tk::init("hello");
-	Tk::button(".b") -Tk::text("Say Hello") -Tk::command(hello);
-	Tk::pack(".b") -Tk::padx(20) -Tk::pady(7);
-	Tk::runEventLoop();
+using namespace Tk;
+using namespace std;
+
+void guitest(void)
+{
 }
 
 void print_stats(void)
@@ -42,7 +42,19 @@ int main(int argc, char *argv[])
 	}
 	if (gui)
 	{
-		guitest();
+		try
+		{
+			init(argv[0]);
+
+			label(".l") - text("Hello C++/Tk!");
+			pack(".l") - padx(20) - pady(6);
+
+			runEventLoop();
+		}
+		catch (exception const &e)
+		{
+			cerr << "Error: " << e.what() << '\n';
+		}
 	}
 	else if (curs)
 	{
