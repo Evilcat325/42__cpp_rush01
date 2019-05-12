@@ -4,6 +4,7 @@
 #include <string>
 #include <mach/mach.h>
 #include <mach/vm_page_size.h>
+#include <iostream>
 
 class System
 {
@@ -28,8 +29,7 @@ private:
 	void update_cpu_model(void);
 	void update_cpu_cores(void);
 	void update_cpu_usage(void);
-	void update_ram_total(void);
-	void update_ram_used(void);
+	void update_ram(void);
 	void update_net_down(void);
 	void update_net_up(void);
 
@@ -39,6 +39,7 @@ public:
 
 	// funcs
 	void update(void);
+	void print(void);
 
 	std::string get_hostname(void) const;
 	std::string get_username(void) const;

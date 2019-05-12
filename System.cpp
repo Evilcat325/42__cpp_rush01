@@ -29,10 +29,25 @@ void System::update(void)
 	update_cpu_model();
 	update_cpu_cores();
 	update_cpu_usage();
-	update_ram_total();
-	update_ram_used();
+	update_ram();
 	update_net_down();
 	update_net_up();
+}
+
+void System::print(void)
+{
+	std::cout << std::setw(10) << "host:" << _hostname << std::endl
+						<< std::setw(10) << "user:" << _username << std::endl
+						<< std::setw(10) << "time:" << _date_time << std::endl
+						<< std::setw(10) << "cpu:" << _cpu_model << std::endl
+						<< std::setw(10) << "cpu cores:" << _cpu_cores << std::endl
+						<< std::setw(10) << "cpu usage:" << _cpu_usage << std::endl
+						<< std::setw(10) << "mem:" << _ram_total << std::endl
+						<< std::setw(10) << "used mem:" << _ram_used << std::endl
+						<< std::setw(10) << "wired mem:" << _ram_wired << std::endl
+						<< std::setw(10) << "free mem:" << _ram_free << std::endl
+						<< std::setw(10) << "net down:" << _net_down << std::endl
+						<< std::setw(10) << "net up:" << _net_up << std::endl;
 }
 
 /*
@@ -93,7 +108,7 @@ void System::update_cpu_usage(void)
 	_cpu_usage = ss.str();
 }
 
-void System::update_ram_total(void)
+void System::update_ram(void)
 {
 	auto total = 0;
 	auto size = sizeof(total);
@@ -105,27 +120,22 @@ void System::update_ram_total(void)
 		ss << total;
 	_ram_total = ss.str();
 
-	kern_return_t kr;
 	vm_statistics64_data_t vm;
 	mach_msg_type_number_t count = sizeof(vm_statistics64_data_t) / sizeof(natural_t);
-	kr = host_statistics64(mach_host_self(), HOST_VM_INFO64, (host_info64_t)&vm, &count);
-	if (kr != KERN_SUCCESS)
-		return;
-	std::stringstream ss;
+	host_statistics64(mach_host_self(), HOST_VM_INFO64, (host_info64_t)&vm, &count);
+	ss.clear();
+	ss.str("");
 	ss << std::fixed << std::setprecision(4);
 	ss << vm.wire_count * 4.0 / (1024.0 * 1024.0);
 	ss >> _ram_wired;
 	ss.clear();
+	ss.str("");
 	ss << vm.free_count * 4.0 / (1024.0 * 1024.0);
 	ss >> _ram_free;
 	ss.clear();
+	ss.str("");
 	ss << 8 - vm.free_count * 4.0 / (1024.0 * 1024.0);
 	ss >> _ram_used;
-}
-
-void System::update_ram_used(void)
-{
-	_ram_used = "-1";
 }
 
 void System::update_net_down(void)
