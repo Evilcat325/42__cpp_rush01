@@ -143,14 +143,16 @@ void System::update_net_down(void)
 {
 	std::stringstream ss;
 	CURL *curl = curl_easy_init();
-	if(curl) {
+	if (curl)
+	{
 		curl_easy_setopt(curl, CURLOPT_URL, "http://google.com");
 		curl_easy_setopt(curl, CURLOPT_NOBODY, 1);
 		auto res = curl_easy_perform(curl);
 		double speed;
 		res = curl_easy_getinfo(curl, CURLINFO_SPEED_DOWNLOAD, &speed);
 		ss << speed;
-	} else
+	}
+	else
 		ss << "-1";
 	_net_down = ss.str();
 }
@@ -159,14 +161,16 @@ void System::update_net_up(void)
 {
 	std::stringstream ss;
 	CURL *curl = curl_easy_init();
-	if(curl) {
+	if (curl)
+	{
 		curl_easy_setopt(curl, CURLOPT_URL, "http://google.com");
 		curl_easy_setopt(curl, CURLOPT_NOBODY, 1);
 		auto res = curl_easy_perform(curl);
 		double speed;
 		res = curl_easy_getinfo(curl, CURLINFO_SPEED_UPLOAD, &speed);
 		ss << speed;
-	} else
+	}
+	else
 		ss << "-1";
 	_net_down = ss.str();
 }
