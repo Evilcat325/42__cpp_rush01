@@ -12,7 +12,8 @@ Curses::~Curses()
 {
 }
 
-void Curses::run(void) {
+void Curses::run(void)
+{
 	_init();
 	System s;
 mainloop:
@@ -35,7 +36,8 @@ mainloop:
 /*
 ** private funcs
 */
-void Curses::_init(void) {
+void Curses::_init(void)
+{
 	initscr();
 	noecho();
 	clear();
