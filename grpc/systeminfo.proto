@@ -1,0 +1,25 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package systeminfo;
+
+service SysInfo {
+	rpc GetCPUBase (google.protobuf.Empty) returns (CPUBaseInfoReply){}
+}
+
+message CPUBaseInfoReply {
+	string brand_string = 1;
+	int32 core_count = 2;
+	int32 thread_count = 3;
+}
+
+message CPUUsageReplay {
+	float loadavg1 = 1;
+	float loadavg5 = 2;
+	float loadavg15 = 3;
+	float load_user = 4;
+	float load_sys = 5;
+	fload load_idle = 6;
+	int32 threads = 7;
+	int64 memsize = 9;
+
+}
