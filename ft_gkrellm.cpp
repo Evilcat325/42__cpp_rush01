@@ -1,16 +1,9 @@
 #include "System.hpp"
 #include "Curses.hpp"
-#include "cpptk-1.0.2/cpptk.h"
+#include "HostStat.hpp"
 
 #include <iostream>
 #include <unistd.h>
-
-using namespace Tk;
-using namespace std;
-
-void guitest(void)
-{
-}
 
 void print_stats(void)
 {
@@ -42,19 +35,11 @@ int main(int argc, char *argv[])
 	}
 	if (gui)
 	{
-		try
-		{
-			init(argv[0]);
-
-			label(".l") - text("Hello C++/Tk!");
-			pack(".l") - padx(20) - pady(6);
-
-			runEventLoop();
-		}
-		catch (exception const &e)
-		{
-			cerr << "Error: " << e.what() << '\n';
-		}
+		HostStat hs;
+		hs.snapCPULoad();
+		hs.snapCPUUsage();
+		hs.snapVM();
+		hs.print();
 	}
 	else if (curs)
 	{
