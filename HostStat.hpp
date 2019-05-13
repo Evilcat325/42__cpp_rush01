@@ -1,19 +1,25 @@
 #ifndef FT_HOSTSTAT_HPP
 #define FT_HOSTSTAT_HPP
 
-#include <cstdlib>
 #include <mach/host_info.h>
 #include <mach/mach.h>
 #include <sys/time.h>
 #include <iostream>
 #include <iomanip>
-#include <string>
+#include <chrono>
 #include <sys/types.h>
 #include <sys/sysctl.h>
 #include <cstdlib>
 #include <unistd.h>
 #include <curl/curl.h>
 #include <sstream>
+#include <ctime>
+#include <string>
+#include <mach/mach.h>
+#include <mach/vm_page_size.h>
+#include <unistd.h>
+#include <ctime>
+#include <curl/curl.h>
 
 typedef struct
 {
@@ -75,6 +81,7 @@ private:
 	hoststat_t host_stat;
 	cpustat_t cpu_stat;
 	vm_statistics64_data_t vm_stat;
+	std::string datetime;
 
 	HostStat(HostStat const &rhs);
 	HostStat &operator=(HostStat const &rhs);
@@ -88,6 +95,7 @@ public:
 	void snapVM();
 	void snapCPUUsage();
 	void snapCPULoad();
+	void snapTime();
 	void update();
 	void print();
 
@@ -97,6 +105,7 @@ public:
 	std::string const get_cpuload();
 	std::string const get_cpuusage();
 	std::string const get_memusage();
+	std::string const get_datetime();
 
 private:
 	static void cpu_percent(unsigned long long ticks, unsigned long long totalticks,

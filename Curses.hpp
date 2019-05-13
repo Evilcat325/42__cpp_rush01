@@ -10,6 +10,7 @@
 #include "CPULoad.hpp"
 #include "CPUUsage.hpp"
 #include "MemUsage.hpp"
+#include "Datetime.hpp"
 #include <vector>
 
 class Curses

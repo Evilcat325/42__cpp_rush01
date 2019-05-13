@@ -90,7 +90,18 @@ void HostStat::update()
 {
 	snapCPULoad();
 	snapCPUUsage();
+	snapTime();
 	snapVM();
+}
+
+void HostStat::snapTime(void)
+{
+	auto now = std::chrono::system_clock::now();
+	auto in_time_t = std::chrono::system_clock::to_time_t(now);
+
+	std::stringstream ss;
+	ss << std::put_time(std::localtime(&in_time_t), "%Y-%m-%d %X");
+	datetime = ss.str();
 }
 
 std::string const &HostStat::get_hostname()
@@ -140,4 +151,9 @@ std::string const HostStat::get_memusage()
 		 << "used " << 8 - vm_stat.free_count * 4.0 / (1024.0 * 1024.0) << "\t"
 		 << std::endl;
 	return ss.str();
+}
+
+std::string const HostStat::get_datetime()
+{
+	return datetime;
 }
