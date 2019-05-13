@@ -9,6 +9,7 @@
 #include "CPUName.hpp"
 #include "CPULoad.hpp"
 #include "CPUUsage.hpp"
+#include "MemUsage.hpp"
 #include <vector>
 
 class Curses

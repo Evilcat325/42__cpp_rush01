@@ -96,6 +96,7 @@ public:
 	std::string const &get_cpuname();
 	std::string const get_cpuload();
 	std::string const get_cpuusage();
+	std::string const get_memusage();
 
 private:
 	static void cpu_percent(unsigned long long ticks, unsigned long long totalticks,

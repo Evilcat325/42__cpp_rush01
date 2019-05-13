@@ -128,3 +128,16 @@ std::string const HostStat::get_cpuusage()
 		 << std::endl;
 	return ss.str();
 }
+
+std::string const HostStat::get_memusage()
+{
+	std::stringstream ss;
+	ss << std::fixed << std::setprecision(4);
+	ss << "total: 8"
+		 << "\t"
+		 << "wired: " << vm_stat.wire_count * 4.0 / (1024.0 * 1024.0) << "\t"
+		 << "free: " << vm_stat.free_count * 4.0 / (1024.0 * 1024.0) << "\t"
+		 << "used " << 8 - vm_stat.free_count * 4.0 / (1024.0 * 1024.0) << "\t"
+		 << std::endl;
+	return ss.str();
+}
