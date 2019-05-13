@@ -107,7 +107,7 @@ std::string const &HostStat::get_cpuname()
 	return cpu_stat.brand_string;
 }
 
-std::string const &HostStat::get_cpuload()
+std::string const HostStat::get_cpuload()
 {
 	std::stringstream ss;
 	ss << std::fixed << std::setprecision(4)
@@ -118,7 +118,7 @@ std::string const &HostStat::get_cpuload()
 	return ss.str();
 }
 
-std::string const &HostStat::get_cpuusage()
+std::string const HostStat::get_cpuusage()
 {
 	std::stringstream ss;
 	ss << std::fixed << std::setprecision(2)

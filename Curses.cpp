@@ -1,7 +1,6 @@
 #include "Curses.hpp"
 #include "System.hpp"
 #include "HostStat.hpp"
-#include "CPUName.hpp"
 
 #include <curses.h>
 #include <unistd.h>
@@ -11,6 +10,7 @@ Curses::Curses(/* args */)
 	modules.emplace_back(new Hostname(hs));
 	modules.emplace_back(new Username(hs));
 	modules.emplace_back(new CPUName(hs));
+	modules.emplace_back(new CPULoad(hs));
 }
 
 Curses::~Curses()

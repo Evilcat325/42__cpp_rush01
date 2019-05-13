@@ -6,6 +6,8 @@
 #include "HostStat.hpp"
 #include "Hostname.hpp"
 #include "Username.hpp"
+#include "CPUName.hpp"
+#include "CPULoad.hpp"
 #include <vector>
 
 class Curses
