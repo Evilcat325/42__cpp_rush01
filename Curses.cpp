@@ -11,6 +11,7 @@ Curses::Curses(/* args */)
 	modules.emplace_back(new Username(hs));
 	modules.emplace_back(new CPUName(hs));
 	modules.emplace_back(new CPULoad(hs));
+	modules.emplace_back(new CPUUsage(hs));
 }
 
 Curses::~Curses()

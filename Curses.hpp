@@ -8,6 +8,7 @@
 #include "Username.hpp"
 #include "CPUName.hpp"
 #include "CPULoad.hpp"
+#include "CPUUsage.hpp"
 #include <vector>
 
 class Curses

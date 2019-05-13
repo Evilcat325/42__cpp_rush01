@@ -5,6 +5,7 @@ ft_gkrellm: System.o Curses.o HostStat.o \
 	modules/Username.o \
 	modules/CPUName.o \
 	modules/CPULoad.o \
+	modules/CPUUsage.o \
 	modules/BaseModule.o
 
 clean:
