@@ -18,8 +18,7 @@ message CPUUsageReplay {
 	float loadavg15 = 3;
 	float load_user = 4;
 	float load_sys = 5;
-	fload load_idle = 6;
+	float load_idle = 6;
 	int32 threads = 7;
 	int64 memsize = 9;
-
 }
