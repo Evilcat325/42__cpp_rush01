@@ -5,12 +5,12 @@
 #include <curses.h>
 #include "HostStat.hpp"
 
-class BaseModule : virtual public IMonitorModule
+class BaseModule : public IMonitorModule
 {
 
 public:
 	BaseModule(HostStat &hs);
-	~BaseModule();
+	virtual ~BaseModule();
 	BaseModule(BaseModule const &rhs);
 	BaseModule &operator=(BaseModule const &rhs);
 	virtual void render() const;

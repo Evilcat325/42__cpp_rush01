@@ -13,7 +13,7 @@ class Curses
 private:
 	void _init(void);
 	HostStat hs;
-	std::vector<std::unique_ptr<IMonitorModule>> modules;
+	std::vector<std::unique_ptr<BaseModule>> modules;
 
 public:
 	Curses(/* args */);
