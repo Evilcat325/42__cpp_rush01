@@ -101,3 +101,30 @@ std::string const &HostStat::get_username()
 {
 	return host_stat.username;
 }
+
+std::string const &HostStat::get_cpuname()
+{
+	return cpu_stat.brand_string;
+}
+
+std::string const &HostStat::get_cpuload()
+{
+	std::stringstream ss;
+	ss << std::fixed << std::setprecision(4)
+		 << cpu_stat.loadavg[0] << " "
+		 << cpu_stat.loadavg[1] << " "
+		 << cpu_stat.loadavg[2] << " "
+		 << std::endl;
+	return ss.str();
+}
+
+std::string const &HostStat::get_cpuusage()
+{
+	std::stringstream ss;
+	ss << std::fixed << std::setprecision(2)
+		 << cpu_stat.usage_user << "% user\t"
+		 << cpu_stat.usage_sys << "% sys\t"
+		 << cpu_stat.usage_idle << "% idle\t"
+		 << std::endl;
+	return ss.str();
+}

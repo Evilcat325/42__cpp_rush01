@@ -13,6 +13,7 @@
 #include <cstdlib>
 #include <unistd.h>
 #include <curl/curl.h>
+#include <sstream>
 
 typedef struct
 {
@@ -92,6 +93,9 @@ public:
 
 	std::string const &get_hostname();
 	std::string const &get_username();
+	std::string const &get_cpuname();
+	std::string const get_cpuload();
+	std::string const get_cpuusage();
 
 private:
 	static void cpu_percent(unsigned long long ticks, unsigned long long totalticks,
